@@ -1,118 +1,284 @@
-import Image from "next/image";
+import Banner from "@/components/Banner";
+import Header from "@/components/Header";
+import PopularCars from "@/components/PopularCars";
 import { Inter } from "next/font/google";
+import Image from "next/image";
+import aboutus_1 from "../public/assets/about_us_1.jpg";
+import aboutus_2 from "../public/assets/about_us_2.jpg";
+import aboutus_3 from "../public/assets/about_us_3.jpg";
+import testimonials_side from "../public/assets/testimonials_side.jpg";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import Service_Part from "@/components/Service_Part";
+import { cars, testimonials } from "@/public/data/cars";
+import CarsCard from "@/components/Cars_Card/CarsCard";
+import Price_Card from "@/components/price/Price_Card";
+import Testimonials_Card from "@/components/testimonials/Testimonials_Card";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  console.log("Testimonials:", testimonials);
+  const videobg = process.env.NEXT_PUBLIC_VIDEOS_VIDEO2;
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // const handleNext = () => {
+  //   currentIndex === testimonials.length - 1
+  //     ? setCurrentIndex(0)
+  //     : setCurrentIndex(currentIndex + 1);
+  // };
+
+  // const handlePrev = () => {
+  //   currentIndex === 0
+  //     ? setCurrentIndex(testimonials.length - 1)
+  //     : setCurrentIndex(currentIndex - 1);
+  // };
+  const totalTestimonials = testimonials.length;
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalTestimonials);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + totalTestimonials) % totalTestimonials
+    );
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleNext();
+    }, 5000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentIndex]);
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <Header />
+      <Banner />
+      <PopularCars />
+
+      <div className="mt-24 mb-[600px] pt-24 pb-96 bg-[#F7F5F2]">
+        <div>
+          <div className="flex justify-center my-6 text-lg text-[var(--color)] tracking-[.2em]">
+            PREMIUM DRIVERS
+          </div>
+          <div>
+            <div className="flex justify-center">
+              <div className="space-y-6 leading-[60px] text-[48px]">
+                <div className="flex justify-center items-center">
+                  <h1 className="flex text-[48px">What We</h1>
+                  <Image
+                    src={aboutus_1}
+                    alt="about us image 1"
+                    className="flex w-[115px] h-[50px] mx-2 items-center"
+                  />
+                  <h1 className="">Provide Is The Luxury Transport</h1>
+                </div>
+                <div className="flex justify-center items-center">
+                  <h1 className=""> And Comfortable the</h1>
+                  <Image
+                    src={aboutus_2}
+                    alt="about us image 1"
+                    className="flex w-[115px] h-[50px] mx-2 items-center"
+                  />
+                  <h1 className=""> Experience</h1>
+                </div>
+                <div className="flex justify-center items-center">
+                  <h1 className="">For</h1>
+                  <Image
+                    src={aboutus_3}
+                    alt="about us image 1"
+                    className="flex w-[115px] h-[50px] mx-2 items-center"
+                  />
+                  <h1 className="">The Best You</h1>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center my-10">
+              <button className="flex border border-[var(--color)] px-12 py-5 hover:bg-[var(--color)] hover:text-white transition-all ease-in-out duration-700">
+                VIEW MORE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="video-block">
+        <div className="video-circle flex justify-center items-center transition-all ease-in-out duration-500">
+          <div className="video-text z-10 text-white text-[25px] font-light text-center capitalize">
+            Video
+          </div>
+        </div>
+      </div>
+      <Service_Part />
+
+      <div className="bg-[var(--bg)] pb-32">
+        <div className="font-[epilogue,sans-serif] mt-[120px] pt-[100px] mx-16">
+          <div className="grid grid-cols-[1fr_auto] auto-cols-fr gap-8 border-b border-[#d9d9d9] grid-rows-auto items-center pb-5 mb-20">
+            <div className="mr-[96px] pb-[20px] pr-[30px]">
+              <div className="text-[#bfa37c] uppercase tracking-[.2rem]">
+                we recommend
+              </div>
+              <h1 className="capitalize mt-2.5 mb-5 text-[48px] font-normal leading-[60px] inline-block">
+                Latest Vehicles
+              </h1>
+            </div>
+            <div className="flex space-x-6 mx-12">
+              <a className="flex cursor-pointer font-light text-[25px] hover:text-[var(--color)] font-[sora] transition-all ease-in-out duration-700">
+                All
+              </a>
+              <a className="flex cursor-pointer font-light text-[25px] hover:text-[var(--color)] font-[epilogue] transition-all ease-in-out duration-700">
+                BMW
+              </a>
+              <a className="flex cursor-pointer font-light text-[25px] hover:text-[var(--color)] font-[epilogue] transition-all ease-in-out duration-700">
+                Lamborgini
+              </a>
+              <a className="flex cursor-pointer font-light text-[25px] hover:text-[var(--color)] font-[epilogue] transition-all ease-in-out duration-700">
+                Mercedes
+              </a>
+              <a className="flex cursor-pointer font-light text-[25px] hover:text-[var(--color)] font-[epilogue] transition-all ease-in-out duration-700">
+                Rolls Royce
+              </a>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-8 gap-y-[60px]">
+            {cars.map((car, index) => (
+              <div key={index}>
+                <CarsCard
+                  image={car.image}
+                  productYear={car.productYear}
+                  productType={car.productType}
+                  mileage={car.mileage}
+                  rating={car.rating}
+                  description={car.description}
+                  price={car.price}
+                  name={car.name}
+                  bgColor="#ffff"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-center items-center mt-20">
+          <button className="flex border border-[var(--color)] px-12 py-5 text-[16px] hover:bg-[#bfa37c] hover:text-white transition=all ease-in-out duration-700 uppercase">
+            discover more
+          </button>
+        </div>
+      </div>
+      <div>
+        <video autoPlay loop muted className="w-full h-auto">
+          <source src={videobg} type="video/mp4" />
+        </video>
+      </div>
+      <div className="mt-[120px] mx-16">
+        <div className="grid grid-cols-[1fr_auto] auto-cols-fr gap-8 border-b border-[#d9d9d9] grid-rows-auto items-center pb-5 mb-20">
+          <div className="mr-[96px] pb-[20px] pr-[30%]">
+            <div className="text-[#bfa37c] uppercase tracking-[.2rem]">
+              best possibilities
+            </div>
+            <h1 className="capitalize mt-2.5 mb-5 text-[48px] font-normal leading-[60px] inline-block">
+              a high variety of options
+            </h1>
+          </div>
+          <div>
+            <button className="flex justify-end ml-auto mr-4 border border-[#bfa37c] px-12 py-5 hover:bg-[#bfa37c] hover:text-white transition=all ease-in-out duration-700">
+              VIEW MORE
+            </button>
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-10">
+          <Price_Card
+            priceTitle="super"
+            price={140}
+            descriptions={[
+              "Leo urna molestie at elem",
+              "Quisque non tellu si",
+              "Pretium lectus quam id li",
+              "Lorem ipsum 24/7",
+            ]}
+          />
+          <Price_Card
+            priceTitle="moderate"
+            price={160}
+            descriptions={[
+              "Leo urna molestie at elem",
+              "Quisque non tellu si",
+              "Pretium lectus quam id li",
+              "Lorem ipsum 24/7",
+            ]}
+          />
+          <Price_Card
+            priceTitle="luxury"
+            price={199}
+            descriptions={[
+              "Leo urna molestie at elem",
+              "Quisque non tellu si",
+              "Pretium lectus quam id li",
+              "Lorem ipsum 24/7",
+            ]}
+          />
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <section className="bg-[#f7f5f2] py-0 overflow-hidden">
+        <div className="container">
+          <div
+            className="gap-x-[30px] grid custom-grid-cols"
+            style={{ gridTemplateColumns: "1fr 1.5fr" }}
+          >
+            <div className="ml-[-210px]">
+              <Image
+                src={testimonials_side}
+                alt="testimonial side"
+                className="w-[700px] h-[750px]"
+              />
+            </div>
+            <div className="overflow-hidden relative mt-[90px]">
+              <div
+                className="whitespace-nowrap transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentIndex * 100}%)`,
+                }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="inline-block w-full">
+                    <Testimonials_Card
+                      title={testimonial.title}
+                      rating={testimonial.rating}
+                      description={testimonial.description}
+                      image={testimonial.image}
+                      name={testimonial.name}
+                      country={testimonial.country}
+                    />
+                  </div>
+                ))}
+              </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+              <div className="flex justify-center mt-[30px] space-x-4 absolute bottom-[38%] right-[4%] z-[10001]">
+                <div
+                  onClick={handlePrev}
+                  className="rounded-full w-[60px] h-[60px] duration-500 bg-white text-[var(--color)] transition-all flex items-center justify-center cursor-pointer hover:bg-[var(--color)] hover:text-white ease-in-out"
+                >
+                  <FaAngleLeft className="text-[30px]" />
+                </div>
+                <div
+                  onClick={handleNext}
+                  className="rounded-full w-[60px] h-[60px] duration-500 bg-white text-[var(--color)] transition-all flex items-center justify-center cursor-pointer hover:bg-[var(--color)] hover:text-white ease-in-out"
+                >
+                  <FaAngleRight className="text-[30px]" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
+}
+
+{
+  /* <div className="video-circle absolute inset-0 flex items-center justify-center rounded-full border-2 borderwhite bg-transparent transition-colors duration-500 ease-in-out hover:bg-[#bfa37c] animate-circle"> */
 }
