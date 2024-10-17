@@ -75,3 +75,9 @@
 .video-circle:hover {
     background-color: #bfa37c;
 }
+
+.sign-up-bg {
+    background-image: url('../public/assets/sign-up-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
