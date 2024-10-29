@@ -18,7 +18,6 @@ import { useEffect, useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  console.log("Testimonials:", testimonials);
   const videobg = process.env.NEXT_PUBLIC_VIDEOS_VIDEO2;
 
   const [currentIndex, setCurrentIndex] = useState(0);
