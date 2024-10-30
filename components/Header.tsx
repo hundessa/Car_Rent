@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import logo from "../public/assets/logo-2.png";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header: React.FC = () => {
   const [navbar, setNavbar] = useState(false);
-
-  const navigate = useNavigate();
-
-  const handleRoute = () =>{
-    navigate("/sign-up")
-  }
+ const router = useRouter();
+  
   const changeBackground = () => {
     if (window.scrollY >= 10) {
       setNavbar(true);
@@ -62,7 +58,7 @@ const Header: React.FC = () => {
           </ul>
         </div>
         <div className="flex justify-items-end py-4 space-x-6">
-          <button className="border-[2px] border-[var(--color)] text-slate-300 font-semibold px-4 rounded-lg hover:text-slate-600 hover:bg-[var(--color)] transition-all ease-in-out duration-500" onClick={handleRoute}>Sign Up</button>
+          <button className="border-[2px] border-[var(--color)] text-slate-300 font-semibold px-4 rounded-lg hover:text-slate-600 hover:bg-[var(--color)] transition-all ease-in-out duration-500" onClick={() => router.push('/sign-up')}>Sign Up</button>
           <button className="border-[2px] border-[var(--color)] text-slate-300 font-semibold px-4 rounded-lg bg-[var(--color)] hover:text-slate-00 hover:bg-transparent transition-all ease-in-out duration-500">Login</button>
         </div>
       </nav>
