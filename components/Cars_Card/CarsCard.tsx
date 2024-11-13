@@ -43,11 +43,11 @@ const CarsCard: React.FC<CarsCardProps> = ({
                   <h1>{productType.toUpperCase()}</h1>
                 </div>
                 <div className="bg-[#d9d9d9] h-[20px] w-[1px] items-center"></div>
-                <div className="text-[#bfa37c] text-[18px] flex items-center">
+                <div className="text-[#bfa37c] text-[18px] flex items-center truncate overflow-hidden whitespace-nowrap">
                   MILEAGE: {mileage}
                 </div>
               </div>
-              <div className="text-[28px] font-mediium font-[epilogue,sans-serif] capitalize">
+              <div className="text-[28px] font-medium font-[epilogue,sans-serif] capitalize w-full truncate overflow-hidden whitespace-nowrap">
                 {name}
               </div>
               <div>

@@ -1,7 +1,10 @@
 import axios from "axios";
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik";
+import { useRouter } from "next/router";
 
 const SignUp: React.FC = () => {
+
+  const router = useRouter()
   interface Values {
     firstName: string;
     lastName: string;
@@ -9,12 +12,24 @@ const SignUp: React.FC = () => {
     password: string;
   }
 
-  const handlesignUp = async () => {
+  const handlesignUp = async ( values: Values) => {
     try {
-      const response = await axios.post("http://localhost:8080/sign-up")
+      const response = await axios.post("http://localhost:8080/user/sign-up", values)
+console.log("Response from back" ,response.data);
+
+      const { message } = response.data;
+
+      if ( message === "Sign up successful") {
+        alert("Sign up successful");
+        router.push("/")
+      }else if ( message === "Email already exists") {
+        alert("Email already exists");
+      }
     } catch (error) {
+      alert("Error signing up")
       console.log("Error signing up", error);
     }
+
   }
 
   return (
@@ -69,14 +84,9 @@ const SignUp: React.FC = () => {
               }
               return errors;
             }}
-            onSubmit={(
-              values: Values,
-              { setSubmitting }: FormikHelpers<Values>
-            ) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 500);
+            onSubmit={async (values, { setSubmitting }) => {
+              await handlesignUp(values); // Pass the form values to handlesignUp
+              setSubmitting(false);
             }}
           >
             <Form className="space-y-4">
