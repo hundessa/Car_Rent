@@ -14,6 +14,7 @@ import CarsCard from "@/components/Cars_Card/CarsCard";
 import Price_Card from "@/components/price/Price_Card";
 import Testimonials_Card from "@/components/testimonials/Testimonials_Card";
 import { useEffect, useState } from "react";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -256,7 +257,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex justify-center mt-[30px] space-x-4 absolute bottom-[38%] right-[4%] z-[10001]">
+              <div className="flex justify-center mt-[30px] space-x-4 absolute bottom-[38%] right-[4%] z-[101]">
                 <div
                   onClick={handlePrev}
                   className="rounded-full w-[60px] h-[60px] duration-500 bg-white text-[var(--color)] transition-all flex items-center justify-center cursor-pointer hover:bg-[var(--color)] hover:text-white ease-in-out"
@@ -274,6 +275,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

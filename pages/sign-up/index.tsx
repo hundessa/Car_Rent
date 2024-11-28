@@ -21,7 +21,7 @@ console.log("Response from back" ,response.data);
 
       if ( message === "Sign up successful") {
         alert("Sign up successful");
-        router.push("/")
+        router.push("/sign-in")
       }else if ( message === "Email already exists") {
         alert("Email already exists");
       }

@@ -2,8 +2,6 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 
-
-
 const SignIn: React.FC = () => {
   interface Values {
     email: string;
@@ -19,12 +17,19 @@ const SignIn: React.FC = () => {
         values
       );
 
-      const { message } = response.data;
+      const { message, role } = response.data;
 
       if (message === "Signin successful") {
         alert("Signin successful");
-        router.push("/");
-      } else if (message === "Invalid credentials" || message === "User not found") {
+        if (role === "user") {
+          router.push("/");
+        } else if (role === "admin") {
+          router.push("/admin-dashboard");
+        }
+      } else if (
+        message === "Invalid credentials" ||
+        message === "User not found"
+      ) {
         alert("User or password not correct");
       }
     } catch (error) {
@@ -38,7 +43,7 @@ const SignIn: React.FC = () => {
       <div className="flex mx[100px] border-[1px] rounded-xl backdrop-blur-[17px]">
         <div className="space-y-4 px-[170px] py-[80px]">
           <div className="flex justify-center text-[var(--color)] mb-10">
-            <h1 className="font-semibold text-4xl">Sign Up</h1>
+            <h1 className="font-semibold text-4xl">Sign In</h1>
           </div>
           <Formik
             initialValues={{
