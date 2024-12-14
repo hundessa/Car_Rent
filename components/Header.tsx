@@ -41,25 +41,25 @@ const Header: React.FC = () => {
         <div className="flex align-center my-auto justify-center mx-auto">
           <ul className="flex space-x-2 text-xl font-semibold text-white relative">
             <Link href="/">
-              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:bg-[#DFA46D]">
+              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:text-[#DFA46D]">
                 Home
               </li>
             </Link>
             <Link href="/">
-              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:bg-[#DFA46D]">
+              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:text-[#DFA46D]">
                 About Us
               </li>
             </Link>
             <Link href="/">
-              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:bg-[#DFA46D]">
+              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:text-[#DFA46D]">
                 Pages
               </li>
             </Link>
-            <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:bg-[#DFA46D]">
+            <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:text-[#DFA46D]">
               <Link href="/">Blog</Link>
             </li>
             <Link href="/">
-              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:bg-[#DFA46D]">
+              <li className="py-3 px-5 transition-all ease-in-out duration-700 hover:text-[#DFA46D]">
                 Contact Us
               </li>
             </Link>
@@ -67,13 +67,13 @@ const Header: React.FC = () => {
         </div>
         <div className="flex justify-items-end py-4 space-x-6">
           <button
-            className="border-[2px] border-[var(--color)] text-slate-300 font-semibold px-4 rounded-lg hover:text-slate-600 hover:bg-[var(--color)] transition-all ease-in-out duration-500"
+            className="border-[2px] border-[var(--color)] text-white font-semibold px-4 rounded-lg hover:bg-[var(--color)] transition-all ease-in-out duration-500"
             onClick={() => router.push("/sign-up")}
           >
             Sign Up
           </button>
           <button
-            className="border-[2px] border-[var(--color)] text-slate-300 font-semibold px-4 rounded-lg bg-[var(--color)] hover:text-slate-00 hover:bg-transparent transition-all ease-in-out duration-500"
+            className="border-[2px] border-[var(--color)] text-white font-semibold px-4 rounded-lg bg-[var(--color)] hover:text-slate-00 hover:bg-transparent transition-all ease-in-out duration-500"
             onClick={() => router.push("/sign-in")}
           >
             Login
